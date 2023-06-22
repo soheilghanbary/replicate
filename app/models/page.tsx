@@ -14,14 +14,15 @@ import { Slider } from "@/components/ui/slider";
 import { useRef } from "react";
 
 export default function ModelsPage() {
-  const promptRef = useRef<HTMLInputElement | null>();
+  const promptRef = useRef<HTMLInputElement | null>(null);
+  const negativeRef = useRef<HTMLInputElement | null>(null);
 
   return (
     <div className="flex space-x-8 py-2">
       <div className="w-64 space-y-4">
         <h3>Input Details</h3>
         <Input ref={promptRef} type={"text"} placeholder="prompt" />
-        <Select>
+        <Select onValueChange={(e) => console.log(e)}>
           <SelectTrigger>
             <SelectValue placeholder="Image Dimensions" />
           </SelectTrigger>
@@ -30,7 +31,7 @@ export default function ModelsPage() {
             <SelectItem value="768">768x768</SelectItem>
           </SelectContent>
         </Select>
-        <Input type={"text"} placeholder="Negative prompt" />
+        <Input ref={negativeRef} type={"text"} placeholder="Negative prompt" />
         <div className="flex">
           <Label className="mr-4">Output</Label>
           <Slider defaultValue={[0]} max={4} step={1} />
